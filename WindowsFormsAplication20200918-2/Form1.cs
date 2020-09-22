@@ -7,15 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VB = Microsoft.VisualBasic;
 
 namespace WindowsFormsAplication20200918_2
 {
     public partial class Form1 : Form
     {
+
+        //这里试写一个计算圆柱体体积的函数
+        private double V (double r,double h)
+        {
+            const double pi = 3.14159;
+            return pi * r * r * h;
+        }
         public Form1()
         {
             InitializeComponent();
-            this.Load += new EventHandler(Form1_Load);
+            this.Load += new EventHandler(Form1_Load);                                      //定义窗体加载事件
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -179,24 +187,79 @@ namespace WindowsFormsAplication20200918_2
 
 
             //goto语句
-            int result = 0;
-            for (int i = 0; i < 10; i++)
+            //    int result = 0;
+            //    for (int i = 0; i < 10; i++)
+            //    {
+            //        if (i == 10)
+            //        {
+            //            goto AAA;
+            //        }
+            //        else
+            //        {
+            //            result += i;
+            //        }
+            //    }
+            //AAA:
+            //    MessageBox.Show(result.ToString(), "修改标题", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+
+
+            //return语句1
+
+
+            //处理对话框的用户响应
+            //DialogResult dialogResult;
+            //dialogResult = MessageBox.Show("下面有3个按钮\n看看点了哪个", "处理对话框的用户响应", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+            //if (dialogResult == DialogResult.Yes)
+            //{
+            //    MessageBox.Show("yes");
+            //}
+            //else if (dialogResult == DialogResult.No)
+            //{
+            //    MessageBox.Show("no");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("cancel");
+            //}
+
+
+            //调用VB的inputbox
+            //string r = VB.Interaction.InputBox("输入半径：", "输入框");
+            //string h = VB.Interaction.InputBox("输入高度：", "输入框");
+            //double vol;
+            //vol = V(double.Parse(r), double.Parse(h));
+            //MessageBox.Show(vol.ToString());
+
+
+            //调用UCase类中的函数，并结合VB中的inputbox，计算输入的文本中有多少个大写字母
+            //string source = VB.Interaction.InputBox("输入文本");
+            //UCase uCase = new UCase();
+            //MessageBox.Show(uCase.coountCapital(source).ToString());
+
+
+            //try,catch,finally
+            string result = "";
+            try
             {
-                if (i == 10)
-                {
-                    goto AAA;
-                }
-                else
-                {
-                    result += i;
-                }
+                int[] i = { 1, 3, 5 };
+                result = i[3].ToString();        //数组下标越界
             }
-            AAA:
-            MessageBox.Show(result.ToString());
+            catch (SystemException ex)
+            {
+                result = ex.Message;
+            }
+            finally
+            {
+                result +="\nfinally";
 
+            }
+            MessageBox.Show(result);                //messagebox放在finally外面和里面是一样的
+        }
 
-
-            //return语句
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Counter.times++;
+            this.button2.Text = "点击次数" + Counter.times;
         }
     }
 }
