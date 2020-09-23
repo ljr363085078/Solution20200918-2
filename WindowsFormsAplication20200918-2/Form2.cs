@@ -29,5 +29,6 @@ namespace WindowsFormsAplication20200918_2
             form1.Visible = true;
             //在窗口2的关闭完成事件里，修改窗口的显示属性，窗口2的关闭事件，需要先在属性里面设置
         }
+
     }
 }
