@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -238,22 +239,82 @@ namespace WindowsFormsAplication20200918_2
 
 
             //try,catch,finally
-            string result = "";
+            //string result = "";
+            //try
+            //{
+            //    int[] i = { 1, 3, 5 };
+            //    result = i[3].ToString();        //数组下标越界
+            //}
+            //catch (SystemException ex)
+            //{
+            //    result = ex.Message;
+            //}
+            //finally
+            //{
+            //    result +="\nfinally";
+
+            //}
+            //MessageBox.Show(result);                //messagebox放在finally外面和里面是一样的
+
+
+            //using system.io 判断文件夹是否存在
+            //bool a = File.Exists(@"f:\visualstudio\solution20200918-2\solution20200918-2.sln");     //判断是否存在文件
+            //bool b = Directory.Exists(@"f:\visualstudio");                               //判断是否存在路径
+            //string result = "";
+            //try
+            //{
+            //    result = a.ToString();
+            //    string[] arr = Directory.GetFiles(@"f:\visualstudio\solution20200918-2");
+            //    for (int i = 0; i < arr.Length; i++)
+            //    {
+            //        result += arr[i] + "\n";
+            //    }
+            //}
+            //catch (SystemException ex)
+            //{
+
+            //    result = ex.Message;
+            //}
+            //finally
+            //{
+            //    result += "\nfinally";
+            //}
+            //MessageBox.Show(result);
+
             try
             {
-                int[] i = { 1, 3, 5 };
-                result = i[3].ToString();        //数组下标越界
+                //创建文本并写入
+                string path = @"F:\VisualStudio\Solution20200918-2\a.txt";
+                FileStream fileStream = new FileStream(path, FileMode.Create);
+                StreamWriter streamWriter = new StreamWriter(fileStream);
+                //开始写入
+                streamWriter.WriteLine("hello VSTO");
+                streamWriter.WriteLine("second line");
+                streamWriter.WriteLine("3th line");
+                //清空缓存
+                streamWriter.Flush();
+                //数据是先被读到了内存中的 ，再把数据写到文件中，当你数据读完的时候不代表你的数据已经写完了，
+                //因为还有一部分有可能会留在内存这个缓冲区中。这时候如果你调用了close()方法关闭了读写流，
+                //那么这部分数据就会丢失，所以为了防止数据丢失，应该在关闭读写流之前先flush()。
+                //关闭流
+                streamWriter.Close();
+                fileStream.Close();
+                //读入内容
+                StreamReader streamReader = new StreamReader(path, Encoding.Default);
+                bool line;
+                string result = "";
+                while (line = streamReader.ReadLine() != null)
+                {
+                    result += line + "\n";
+                }
+                MessageBox.Show(result);
             }
             catch (SystemException ex)
             {
-                result = ex.Message;
+                string result = ex.Message;
+                MessageBox.Show(result);
             }
-            finally
-            {
-                result +="\nfinally";
-
-            }
-            MessageBox.Show(result);                //messagebox放在finally外面和里面是一样的
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
