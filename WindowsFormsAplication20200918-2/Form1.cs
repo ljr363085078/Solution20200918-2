@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VB = Microsoft.VisualBasic;
@@ -315,7 +316,39 @@ namespace WindowsFormsAplication20200918_2
             //    string result = ex.Message;
             //    MessageBox.Show(result);
             //}
+
+
+
+            //正则表达式
+            //string phongNumber = "My Phone:13668968541";
+            //Regex regex = new Regex(@"[\d]{10}",RegexOptions.None);
+            //bool result = regex.IsMatch(phongNumber);
+            //MatchCollection collection = regex.Matches(phongNumber);
+            //if (result == true) 
+            //{
+            //    string result2 = "";
+            //    //for (int i = 0; i < collection.Count; i++)
+            //    //{
+            //    //    result2 += collection[i].Value + "\n";
+            //    //}
+            //    //
+            //    foreach (Match match in collection)
+            //    {
+            //        result2 += match + "\n";
+            //    }
+            //    MessageBox.Show(result2);
+            //}
+            //else
+            //{
+            //    MessageBox.Show(phongNumber + "\n不包含手机号码");
+            //}
+
+
+            //点击按钮1，加载窗体2
+            Form2 form2 = new Form2();
+            Form1 form1 = new Form1();
             
+            form2.Show(this);
         }
 
         private void button2_Click(object sender, EventArgs e)
