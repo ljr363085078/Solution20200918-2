@@ -17,7 +17,7 @@ namespace WindowsFormsAplication20200918_2
     {
 
         //这里试写一个计算圆柱体体积的函数
-        private double V (double r,double h)
+        private double V(double r, double h)
         {
             const double pi = 3.14159;
             return pi * r * r * h;
@@ -25,12 +25,15 @@ namespace WindowsFormsAplication20200918_2
         public Form1()
         {
             InitializeComponent();
-            this.Load += new EventHandler(Form1_Load);                                      //定义窗体加载事件
+            //this.Load += new EventHandler(Form1_Load); 
+            //这段代码在这里没用，他相当于执行Form1_load这个函数
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
+
+        public static bool firm1Visiabel = true;
         private void Form1_Load(object sender, EventArgs e)
         {
             this.listBox1.Items.Clear();
@@ -41,6 +44,7 @@ namespace WindowsFormsAplication20200918_2
             }
             this.richTextBox1.Text = Libai.白马篇;
             this.pictureBox1.Image = Libai.李白;
+            
         }
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,6 +55,7 @@ namespace WindowsFormsAplication20200918_2
         private void button1_Click(object sender, EventArgs e)
         {
 
+            
             //列表组件赋值练习
             string list_result = "";
             string[,] list = new string[9, 9];
@@ -347,8 +352,14 @@ namespace WindowsFormsAplication20200918_2
             //点击按钮1，加载窗体2
             Form2 form2 = new Form2();
             Form1 form1 = new Form1();
-            
-            form2.Show(this);
+
+            form2.Show();
+            this.Hide();
+            //DialogResult dialogResult = form1.ShowDialog();
+            //if (dialogResult==DialogResult.Cancel)
+            //{
+            //    this.Visible = true;
+            //}
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -364,7 +375,8 @@ namespace WindowsFormsAplication20200918_2
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            
         }
+
     }
 }
