@@ -38,7 +38,8 @@ namespace WindowsFormsAplication20200918_2
                 char a = Convert.ToChar(i);
                 this.listBox1.Items.Add(i.ToString() + "\t" + a);
             }
-
+            this.richTextBox1.Text = Libai.白马篇;
+            this.pictureBox1.Image = Libai.李白;
         }
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -281,39 +282,39 @@ namespace WindowsFormsAplication20200918_2
             //}
             //MessageBox.Show(result);
 
-            try
-            {
-                //创建文本并写入
-                string path = @"F:\VisualStudio\Solution20200918-2\a.txt";
-                FileStream fileStream = new FileStream(path, FileMode.Create);
-                StreamWriter streamWriter = new StreamWriter(fileStream);
-                //开始写入
-                streamWriter.WriteLine("hello VSTO");
-                streamWriter.WriteLine("second line");
-                streamWriter.WriteLine("3th line");
-                //清空缓存
-                streamWriter.Flush();
-                //数据是先被读到了内存中的 ，再把数据写到文件中，当你数据读完的时候不代表你的数据已经写完了，
-                //因为还有一部分有可能会留在内存这个缓冲区中。这时候如果你调用了close()方法关闭了读写流，
-                //那么这部分数据就会丢失，所以为了防止数据丢失，应该在关闭读写流之前先flush()。
-                //关闭流
-                streamWriter.Close();
-                fileStream.Close();
-                //读入内容
-                StreamReader streamReader = new StreamReader(path, Encoding.Default);
-                bool line;
-                string result = "";
-                while (line = streamReader.ReadLine() != null)
-                {
-                    result += line + "\n";
-                }
-                MessageBox.Show(result);
-            }
-            catch (SystemException ex)
-            {
-                string result = ex.Message;
-                MessageBox.Show(result);
-            }
+            //try
+            //{
+            //    //创建文本并写入
+            //    string path = @"F:\VisualStudio\Solution20200918-2\a.txt";
+            //    FileStream fileStream = new FileStream(path, FileMode.Create);
+            //    StreamWriter streamWriter = new StreamWriter(fileStream);
+            //    //开始写入
+            //    streamWriter.WriteLine("hello VSTO");
+            //    streamWriter.WriteLine("second line");
+            //    streamWriter.WriteLine("3th line");
+            //    //清空缓存
+            //    streamWriter.Flush();
+            //    //数据是先被读到了内存中的 ，再把数据写到文件中，当你数据读完的时候不代表你的数据已经写完了，
+            //    //因为还有一部分有可能会留在内存这个缓冲区中。这时候如果你调用了close()方法关闭了读写流，
+            //    //那么这部分数据就会丢失，所以为了防止数据丢失，应该在关闭读写流之前先flush()。
+            //    //关闭流
+            //    streamWriter.Close();
+            //    fileStream.Close();
+            //    //读入内容
+            //    StreamReader streamReader = new StreamReader(path, Encoding.Default);
+            //    bool line;
+            //    string result = "";
+            //    while (line = streamReader.ReadLine() != null)
+            //    {
+            //        result += line + "\n";
+            //    }
+            //    MessageBox.Show(result);
+            //}
+            //catch (SystemException ex)
+            //{
+            //    string result = ex.Message;
+            //    MessageBox.Show(result);
+            //}
             
         }
 
@@ -321,6 +322,16 @@ namespace WindowsFormsAplication20200918_2
         {
             Counter.times++;
             this.button2.Text = "点击次数" + Counter.times;
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
