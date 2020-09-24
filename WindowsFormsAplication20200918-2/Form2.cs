@@ -16,5 +16,11 @@ namespace WindowsFormsAplication20200918_2
         {
             InitializeComponent();
         }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
+        
     }
 }

@@ -347,8 +347,9 @@ namespace WindowsFormsAplication20200918_2
             //点击按钮1，加载窗体2
             Form2 form2 = new Form2();
             Form1 form1 = new Form1();
-            
+            this.Hide();
             form2.Show(this);
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
