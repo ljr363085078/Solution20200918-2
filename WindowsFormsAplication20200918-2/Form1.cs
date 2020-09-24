@@ -29,14 +29,11 @@ namespace WindowsFormsAplication20200918_2
             //这段代码在这里没用，他相当于执行Form1_load这个函数
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
         public static bool firm1Visiabel = true;
         private void Form1_Load(object sender, EventArgs e)
         {
             this.listBox1.Items.Clear();
+            this.listBox2.Items.Clear();
             for (int i = 1; i <= 127; i++)
             {
                 char a = Convert.ToChar(i);
@@ -44,7 +41,6 @@ namespace WindowsFormsAplication20200918_2
             }
             this.richTextBox1.Text = Libai.白马篇;
             this.pictureBox1.Image = Libai.李白;
-            
         }
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -355,11 +351,7 @@ namespace WindowsFormsAplication20200918_2
 
             form2.Show();
             this.Hide();
-            //DialogResult dialogResult = form1.ShowDialog();
-            //if (dialogResult==DialogResult.Cancel)
-            //{
-            //    this.Visible = true;
-            //}
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -368,15 +360,72 @@ namespace WindowsFormsAplication20200918_2
             this.button2.Text = "点击次数" + Counter.times;
         }
 
+
+        private void listBox2_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        //这3个参数是下面列表2鼠标点击事件用的
+        int clickTimes =0;
+        int clickTimesRight = 0;
+        int clickTimesLeft = 0;
+        int clickTimesMid = 0;
+        private void listBox2_MouseDown(object sender, MouseEventArgs e)
+        {
+            //这里做一个列表2，用来记录鼠标左中右3个按键的点击次数展示
+            if (this.listBox2.Items.Count < 1)
+            {
+                this.listBox2.Items.Add("鼠标点击次数" + clickTimes);
+                this.listBox2.Items.Add("鼠标右键次数" + clickTimesRight);
+                this.listBox2.Items.Add("鼠标左键次数" + clickTimesLeft);
+                this.listBox2.Items.Add("鼠标中间次数" + clickTimesMid);
+            }
+            if (e.Button == MouseButtons.Right)
+            {
+                clickTimesRight++;
+                clickTimes++;
+                listBox2.Items[0] = clickTimes;
+                listBox2.Items[1] = clickTimesRight;
+            }
+            else if (e.Button == MouseButtons.Left)
+            {
+                clickTimesLeft++;
+                clickTimes++;
+                listBox2.Items[0] = clickTimes;
+                listBox2.Items[2] = clickTimesLeft;
+            }
+            else
+            {
+                clickTimesMid++;
+                clickTimes++;
+                listBox2.Items[0] = clickTimes;
+                listBox2.Items[3] = clickTimesMid;
+
+            }
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripComboBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void asaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.openFileDialog1.Filter = "Word Documents|*.doc|Dexcel Worksheets|*.xls|PowerPoint Presentations|*.ppt|Office Files|*.doc;*.xls;*ppt|ALL Files|*.*";
+            //this.openFileDialog1.ShowDialog();
+            this.colorDialog1.ShowDialog();
+            this.richTextBox1.Text = this.openFileDialog1.FileName;
+        }
+
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
     }
 }
