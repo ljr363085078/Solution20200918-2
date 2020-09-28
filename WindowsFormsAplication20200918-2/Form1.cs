@@ -10,6 +10,10 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VB = Microsoft.VisualBasic;
+using System.Runtime.InteropServices;
+using Excel = Microsoft.Office.Interop.Excel;
+using Office = Microsoft.Office.Core;
+using Microsoft.Office.Interop.Excel;
 
 namespace WindowsFormsAplication20200918_2
 {
@@ -427,5 +431,36 @@ namespace WindowsFormsAplication20200918_2
         {
 
         }
+
+        private void Form1_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            createExcel();
+            getExcel();
+        }
+        
+        //获取excel对象信息
+        public void getExcel()
+        {
+            Excel.Application ExcelApp;
+            ExcelApp = (Excel.Application)Marshal.GetActiveObject("Excel.Application");
+            MessageBox.Show(ExcelApp.Caption + "");
+        }
+
+        //创建一个excel对象
+        public void createExcel()
+        {
+            object Nothing = System.Reflection.Missing.Value;
+            Excel.Application NewApp = new Excel.Application();
+            NewApp.Visible = true;
+            NewApp.Caption = "new app";
+            Excel.Workbook workbook = NewApp.Workbooks.Add(Nothing);
+            Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
+        }
+
     }
 }
