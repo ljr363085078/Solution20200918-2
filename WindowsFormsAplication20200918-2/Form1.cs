@@ -458,8 +458,9 @@ namespace WindowsFormsAplication20200918_2
         public void createExcel()
         {
 
-            object nothing = Missing.Value;
-            Excel.Workbook workBook = newApp.Workbooks.Add(nothing);
+            //object nothing = Missing.Value;
+            Excel.Workbook workBook;
+            workBook = newApp.Workbooks.Add();
             //Excel.Worksheet workSheet = (Excel.Worksheet)workBook.Worksheets[1];
             //workbook.Worksheets[1] as Excel.Worksheet;         
             //worksheet.SaveAs(@"E:\new.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
@@ -478,11 +479,12 @@ namespace WindowsFormsAplication20200918_2
         }
 
         //这里想写一个工作簿的关闭事件，无法正常运行，原因未知
-        //public void Application()
+        //实际上这里是一个excel对象的关闭事件，目前这个对象没有被关闭，所以没有触发
+        //public void NewAppEvents()
         //{
-        //    newApp.WorkbookBeforeClose += new Excel.AppEvents_WorkbookBeforeCloseEventHandler(newApp_WorkbookBeforeClose);
+        //    newApp.WorkbookBeforeClose += new Excel.AppEvents_WorkbookBeforeCloseEventHandler(NewApp_WorkbookBeforeClose);
         //}
-        //public void newApp_WorkbookBeforeClose(Excel.Workbook workBook, ref bool Cancel)
+        //public void NewApp_WorkbookBeforeClose(Excel.Workbook workBook, ref bool Cancel)
         //{
         //    MessageBox.Show("即将关闭：" + workBook.FullName);
         //    Cancel = true;
