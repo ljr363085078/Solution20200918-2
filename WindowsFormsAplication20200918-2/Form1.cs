@@ -14,6 +14,7 @@ using System.Runtime.InteropServices;
 using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Interop.Excel;
+using System.Reflection;
 
 namespace WindowsFormsAplication20200918_2
 {
@@ -55,7 +56,7 @@ namespace WindowsFormsAplication20200918_2
         private void button1_Click(object sender, EventArgs e)
         {
 
-            
+
             //列表组件赋值练习
             string list_result = "";
             string[,] list = new string[9, 9];
@@ -371,7 +372,7 @@ namespace WindowsFormsAplication20200918_2
         }
 
         //这3个参数是下面列表2鼠标点击事件用的
-        int clickTimes =0;
+        int clickTimes = 0;
         int clickTimesRight = 0;
         int clickTimesLeft = 0;
         int clickTimesMid = 0;
@@ -440,27 +441,51 @@ namespace WindowsFormsAplication20200918_2
         private void button3_Click(object sender, EventArgs e)
         {
             createExcel();
-            getExcel();
+            //getExcel();
         }
-        
+
         //获取excel对象信息
         public void getExcel()
         {
             Excel.Application ExcelApp;
-            ExcelApp = (Excel.Application)Marshal.GetActiveObject("Excel.Application");
+            ExcelApp = (Excel.Application)Marshal.GetActiveObject("Excel.Application");         //这里是一个get的用法？
             MessageBox.Show(ExcelApp.Caption + "");
         }
 
         //创建一个excel对象
+
+        Excel.Application newApp = new Excel.Application();
         public void createExcel()
         {
-            object Nothing = System.Reflection.Missing.Value;
-            Excel.Application NewApp = new Excel.Application();
-            NewApp.Visible = true;
-            NewApp.Caption = "new app";
-            Excel.Workbook workbook = NewApp.Workbooks.Add(Nothing);
-            Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
+
+            object nothing = Missing.Value;
+            Excel.Workbook workBook = newApp.Workbooks.Add(nothing);
+            //Excel.Worksheet workSheet = (Excel.Worksheet)workBook.Worksheets[1];
+            //workbook.Worksheets[1] as Excel.Worksheet;         
+            //worksheet.SaveAs(@"E:\new.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+            //workbook.Save();
+            newApp.Visible = true;          //这里设置表格是否可见，需要在创建表格后再设置，否则表格不会显示出来；           
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            newApp.Caption = "测试工作簿改名";
+            ((Excel.Worksheet)newApp.ActiveSheet).Name = "测试表格改名";
+            Excel.Range range = newApp.Selection as Excel.Range;
+            range.Value = newApp.UserName + "  " + newApp.Workbooks.Count;
+            newApp.StatusBar = "测试修改表格状态栏";
+        }
+
+        //这里想写一个工作簿的关闭事件，无法正常运行，原因未知
+        //public void Application()
+        //{
+        //    newApp.WorkbookBeforeClose += new Excel.AppEvents_WorkbookBeforeCloseEventHandler(newApp_WorkbookBeforeClose);
+        //}
+        //public void newApp_WorkbookBeforeClose(Excel.Workbook workBook, ref bool Cancel)
+        //{
+        //    MessageBox.Show("即将关闭：" + workBook.FullName);
+        //    Cancel = true;
+        //}
     }
 }
