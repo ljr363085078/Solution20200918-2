@@ -470,8 +470,7 @@ namespace WindowsFormsAplication20200918_2
 
         private void button4_Click(object sender, EventArgs e)
         {
-
-            newApp.Caption = "测试工作簿改名";
+            newApp.Caption = "测试工作簿改名";                                             //这里是改了excel对象的名称
             ((Excel.Worksheet)newApp.ActiveSheet).Name = "测试表格改名";
             Excel.Range range = newApp.Selection as Excel.Range;
             range.Value = newApp.UserName + "  " + newApp.Workbooks.Count;
