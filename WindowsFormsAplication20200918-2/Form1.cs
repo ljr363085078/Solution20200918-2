@@ -445,12 +445,12 @@ namespace WindowsFormsAplication20200918_2
         }
 
         //获取excel对象信息
-        public void getExcel()
-        {
-            Excel.Application ExcelApp;
-            ExcelApp = (Excel.Application)Marshal.GetActiveObject("Excel.Application");         //这里是一个get的用法？
-            MessageBox.Show(ExcelApp.Caption + "");
-        }
+        //public void getExcel()
+        //{
+        //    Excel.Application ExcelApp;
+        //    ExcelApp = (Excel.Application)Marshal.GetActiveObject("Excel.Application");         //这里是一个get的用法？
+        //    MessageBox.Show(ExcelApp.Caption + "");
+        //}
 
         //创建一个excel对象
 
@@ -468,14 +468,7 @@ namespace WindowsFormsAplication20200918_2
             newApp.Visible = true;          //这里设置表格是否可见，需要在创建表格后再设置，否则表格不会显示出来；           
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            newApp.Caption = "测试工作簿改名";                                             //这里是改了excel对象的名称
-            ((Excel.Worksheet)newApp.ActiveSheet).Name = "测试表格改名";
-            Excel.Range range = newApp.Selection as Excel.Range;
-            range.Value = newApp.UserName + "  " + newApp.Workbooks.Count;
-            newApp.StatusBar = "测试修改表格状态栏";
-        }
+
 
         //这里想写一个工作簿的关闭事件，无法正常运行，原因未知
         //实际上这里是一个excel对象的关闭事件，目前这个对象没有被关闭，所以没有触发
@@ -488,5 +481,29 @@ namespace WindowsFormsAplication20200918_2
         //    MessageBox.Show("即将关闭：" + workBook.FullName);
         //    Cancel = true;
         //}
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            newApp.Caption = "测试工作簿改名";                                             //这里是改了excel对象的名称
+            ((Excel.Worksheet)newApp.ActiveSheet).Name = "测试表格改名";
+            Excel.Range range = newApp.Selection as Excel.Range;
+            range.Value = newApp.UserName + "  " + newApp.Workbooks.Count;
+            newApp.StatusBar = "测试修改表格状态栏";
+
+            //将数组的值写入单元格，这里写入要用中括号，小括号会报错
+            int[,] arr = new int[3, 4];
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    arr[i, j] = i * 10 + j;
+                }
+            }
+            Excel.Range range1 = newApp.Range["B2:E4"];                 //超出部分显示为N/A，不足部分不显示
+            range1.Select();
+            range1.Value2 = arr;
+
+
+        }
     }
 }

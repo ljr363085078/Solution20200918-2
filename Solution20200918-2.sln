@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsAplication20200
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication20200918-2", "ConsoleApplication20200918-2\ConsoleApplication20200918-2.csproj", "{AEE64593-E673-4734-8C6B-204EC4ABE9ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelClassLibrary", "ExcelClassLibrary\ExcelClassLibrary.csproj", "{659016B1-24DA-4241-B7A5-BCA89735C858}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{AEE64593-E673-4734-8C6B-204EC4ABE9ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEE64593-E673-4734-8C6B-204EC4ABE9ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEE64593-E673-4734-8C6B-204EC4ABE9ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{659016B1-24DA-4241-B7A5-BCA89735C858}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{659016B1-24DA-4241-B7A5-BCA89735C858}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{659016B1-24DA-4241-B7A5-BCA89735C858}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{659016B1-24DA-4241-B7A5-BCA89735C858}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
